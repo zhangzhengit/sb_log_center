@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+body {
+	background-color: #333333;
+	background-repeat: fixed;
+}
+
+div {
+	text-align: center;
+	width: 99%;
+	height: 100%;
+	border: 1px solid pink;
+	border-width: 0px;
+	/* 	border-style: soild; */
+	border-style: dashed dashed dashed dashed;
+	/*  	padding: 1px;  */
+	/* 	margin: auto; */
+}
+
+p {
+	color: #D0EE01;
+	font-size: 24px;
+	text-align: center;
+	font-style: inherit;
+}
+
+* {
+	margin: 8;
+	background-color: #333333;
+	padding: 8;
+}
+
+p * {
+	color: white;
+}
+
+p.search{
+	color: white;
+	font-size: 24px;
+}
+input{
+	color: white;
+	font-size: 24px;
+}
+button{
+	color: white;
+	font-size: 24px;
+}
+
+a {
+	color: white;
+	font-size: 24px;
+}
+
+a:hover {
+	color: red;
+}
+
+table {
+ 	border: 1px solid gray; 
+	font-size: 24px;
+	width: auto;
+	margin: auto;
+ 	background-color: pink; 
+}
+
+table th {
+	color: yellow;
+	text-align: center;
+}
+
+table tr td {
+	font-size: 24px;
+	color: white;
+ 	border: 1px solid gray; 
+}
+
+span {
+	font-size: 24px;
+	color: white;
+}
+
+.appSelect{
+	width: 300px;
+	font-size: 24px;
+	color: white;
+}

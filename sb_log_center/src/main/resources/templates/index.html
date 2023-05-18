@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+	function ss(){
+	　	 $.ajax({
+	         type:"POST",
+	         url: "/user/signout",
+// 	         data: JSON.stringify(urlData), 
+	         contentType : "application/json;charset=UTF-8",
+	         dataType: "json",
+	         success: function(result){
+	        	 if(result.code == 0){
+	        		alert(result.message);
+		        	window.location.href="/";
+	        	 }else{
+	        		 $("#message").html("操作出错：" + result.message);
+	        	 }
+	         },
+	         error: function(result){
+        		 $("#message").html("操作出错：" + result.message);
+	         }
+	     });
+	}
+
+	function search(t){
+	 	var app = $("#app").val();
+// 	 	alert('app = ' + app);
+		if(t == 1){
+			var k = $("#k").val();
+// 			window.location.href="/?app="+app+"&k=" + k;
+// FIXME 暂时写死app=-1，因为后端还没有实现完整
+			window.location.href="/?app=-1&k=" + k;
+		}
+		
+		if(t == 2){
+			window.location.href="/";
+		}
+	
+	}
+
+	
+</script>
+
+<link rel="stylesheet" type="text/css" href="/css/index.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>log-center-搜索页</title>
+</head>
+
+<body>
+
+	<p class="search">
+		<a href="/" class="shouye"> 首页 </a>
+		<input type="text" id= "k" value="${k}"/>
+		<button onclick="search(1)">搜索</button> 
+		<button onclick="search(2)">重置</button> 
+	</p>
+	
+	<div>
+		<#if (appList?? && appList?size > 0) >
+			<span>请选择APP</span>
+			<select id="app" class="appSelect">
+				<#list appList as t>
+					<option value="${t.id}">${t.name}</option>
+				</#list>
+			</select>
+		</#if>
+	</div>
+	
+	<#if message??>
+		<p class="search">
+			${message}
+		</p>
+	</#if>
+	
+	<div class="draw">
+		
+		<table>
+	
+			<th colspan="5">搜索结果
+				<#if t == 1>
+					——请输入关键词进行搜索
+				</#if>
+				<#if t == 2>
+					——${list?size}条
+				</#if>
+				
+			</th>
+			<tr>
+				<td>序号</td>
+				<td>日志内容</td>
+				<td>日志创建时间</td>
+				<td>APPID</td>
+				<td>APP名称</td>
+			</tr>
+			
+			<#list list as aa>
+				<tr>
+					<td>${aa.id}</td>
+					<td>${aa.content}</td>
+					<td>${aa.createTime}</td>
+					<td>${aa.appId}</td>
+					<td>${aa.appName}</td>
+				</tr>
+			</#list>
+		</table>
+	</div>
+	
+</body>
+
+</html>
